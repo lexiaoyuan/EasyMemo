@@ -1,0 +1,85 @@
+@charset "utf-8";
+/* CSS Document */
+body,div{ 
+	margin: 0; 
+	padding: 0; 
+	text-align: center;
+	}
+#div1 {
+	width: 100%;
+	height: 800px;
+	background: rgba(0,0,0,0.4);
+}
+#div2 {
+	background: url(../img/backgroundimg.jpg) no-repeat;
+	height: 100%;
+	width: 100%;
+	overflow: hidden;
+	background-size: cover;
+	margin: 0;
+	padding: 0;
+	
+}
+#div3{
+	margin:0 auto;
+	width:310px;
+	padding-top:170px;
+	font-size:40px;
+	font-family: "幼圆";
+	font-weight: bold;
+	border-bottom:1px #00CCFF solid;
+	color: #00CCFF;
+}
+#div3 p{
+	margin-bottom:0px;
+	}
+#div2 input {
+	text-indent: 4px;
+	font-family: "微软雅黑"; 
+	margin: 5px auto;
+	border-radius: 5px;
+	border: none;
+}
+#div2 form{
+	font-size: 20px;
+	font-family: "微软雅黑";
+	text-align: center;
+	margin-top: 10px;
+}
+
+input[type="text"] {
+	height:35px;
+	}
+.username input {
+	width: 230px;
+	font-size: 14px; 
+}
+.checkcode input{
+	width: 90px;
+	font-size: 14px; 
+}
+#change {
+	width:70px;
+	height:37px;
+	line-height: 37px;
+	padding:0 auto;
+	background-color:#FFFFFF;
+}
+#register {
+	width: 310px;
+	height: 37px;
+	background-color: #00CCFF;
+	color: red;
+	margin-top: 20px;
+	font-size: 20px;
+	line-height: 35px;
+	font-family: "微软雅黑";
+	word-spacing: 10px;
+	cursor: pointer;
+}
+#msg{
+	font-size:16px;
+	color:#996600;
+}
+
+

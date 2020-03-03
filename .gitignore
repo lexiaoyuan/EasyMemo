@@ -1,0 +1,9 @@
+*.myeclipse
+*.settings
+*.classpath
+*.project
+classes/
+META-INF/
+*.mymetadata
+*.idea
+*.iml
