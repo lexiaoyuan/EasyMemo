@@ -14,6 +14,7 @@
 
     <mappers>
         <mapper resource="com/easymemo/dao/MemoMapper.xml"/>
+        <mapper resource="com/easymemo/dao/UserMapper.xml"/>
     </mappers>
 
 </configuration>

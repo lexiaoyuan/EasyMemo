@@ -8,9 +8,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -24,7 +21,7 @@ public class MemoController {
     }
 
     @GetMapping("/lookMemo/{userAccount}")
-    public String lookMemo(@PathVariable("userAccount") String userAccount, Model model) {
+    public String lookMemo(@PathVariable String userAccount, Model model) {
         List<Memo> memoList = memoService.lookMemo(userAccount);
         for (Memo memo : memoList) {
             System.out.println(memo);
