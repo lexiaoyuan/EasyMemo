@@ -7,3 +7,5 @@ META-INF/
 *.mymetadata
 *.idea
 *.iml
+out/
+target/
