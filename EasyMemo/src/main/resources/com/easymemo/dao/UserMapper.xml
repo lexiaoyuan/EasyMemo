@@ -7,4 +7,8 @@
         insert into user (user_account) values (#{userAccount});
     </insert>
 
+    <select id="checkUser" parameterType="string" resultType="user">
+        select user_account from user where user_account = #{userAccount};
+    </select>
+
 </mapper>

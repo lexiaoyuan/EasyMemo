@@ -1,9 +1,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
   <head>
-    <title>$Title$</title>
+    <title>易备系统</title>
   </head>
   <body>
-  $END$
+    <a href="${pageContext.request.contextPath}/entry/login">
+      <button>进入易备系统</button>
+    </a>
   </body>
 </html>

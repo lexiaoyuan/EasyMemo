@@ -1,6 +1,7 @@
 package com.easymemo.service;
 
 import com.easymemo.dao.UserMapper;
+import com.easymemo.pojo.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,5 +16,9 @@ public class UserServiceImpl implements UserService {
 
     public int addUser(String userAccount) {
         return userMapper.addUser(userAccount);
+    }
+
+    public User checkUser(String userAccount) {
+        return userMapper.checkUser(userAccount);
     }
 }
