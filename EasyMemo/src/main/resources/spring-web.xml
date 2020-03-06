@@ -15,4 +15,11 @@
         <property name="prefix" value="/WEB-INF/jsp/"/>
         <property name="suffix" value=".jsp"/>
     </bean>
+
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/entry/**"/>
+            <bean class="com.easymemo.config.EntryInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
 </beans>

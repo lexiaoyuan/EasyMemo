@@ -6,6 +6,7 @@
 </head>
 <body>
 <p>欢迎你：${userAccount}</p>
+<a href="${pageContext.request.contextPath}/user/logout">退出登录</a>
 <div>
     <div>
         <ul>

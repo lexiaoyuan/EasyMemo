@@ -3,6 +3,7 @@ package com.easymemo.controller;
 import com.easymemo.pojo.Memo;
 import com.easymemo.service.UserService;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -23,7 +24,7 @@ public class UserController {
 
         if (userService.checkUser(phoneNumber) != null) {  //手机号已注册
             if (!checkCode.equals("123456")) {  //验证码错误
-                session.setAttribute("msg", "验证码错误，请重新输入！");
+                session.setAttribute("msg", "验证码不匹配，请重新输入！");
                 return "redirect:/entry/login";
             } else {  //验证码正确，可以直接登录
                 session.setAttribute("userAccount", phoneNumber);
@@ -38,16 +39,22 @@ public class UserController {
     @PostMapping("/register")
     public String register(String phoneNumber, String checkCode, HttpSession session){
         if (userService.checkUser(phoneNumber) != null) {  //手机号已注册
-            session.setAttribute("msg", "手机号已注册，请直接登录！");
+            session.setAttribute("msg", "手机号已注册，可直接登录！");
         } else {  //手机号未注册
             if (!checkCode.equals("654321")) {  //验证码错误
-                session.setAttribute("msg", "验证码错误，请重新输入！");
+                session.setAttribute("msg", "验证码不匹配，请重新输入！");
                 return "redirect:/entry/register";
             } else {  //验证码正确，可以注册
                 userService.addUser(phoneNumber);
-                session.setAttribute("msg", "注册成功，请直接登录！");
+                session.setAttribute("msg", "注册完成，可直接登录！");
             }
         }
+        return "redirect:/entry/login";
+    }
+
+    @GetMapping("/logout")
+    public String logout(HttpSession session) {
+        session.removeAttribute("userAccount");
         return "redirect:/entry/login";
     }
 
