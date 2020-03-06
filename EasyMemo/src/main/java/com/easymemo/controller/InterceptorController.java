@@ -18,4 +18,14 @@ public class InterceptorController {
         return "register";  //register.jsp
     }
 
+    @GetMapping("/memo")
+    public String toMemo() {
+        return "memo"; //memo.jsp
+    }
+
+    @GetMapping("/lookMemo")
+    public String toLookMemo() {
+        return "look-memo";  //look-memo.jsp
+    }
+
 }

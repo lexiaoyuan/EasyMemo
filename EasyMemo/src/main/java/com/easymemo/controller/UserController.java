@@ -1,10 +1,8 @@
 package com.easymemo.controller;
 
+import com.easymemo.pojo.Memo;
 import com.easymemo.service.UserService;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -28,7 +26,8 @@ public class UserController {
                 session.setAttribute("msg", "验证码错误，请重新输入！");
                 return "redirect:/entry/login";
             } else {  //验证码正确，可以直接登录
-                return "memo";  //memo.jsp
+                session.setAttribute("userAccount", phoneNumber);
+                return "redirect:/entry/memo";
             }
         } else {  //手机号未注册
             session.setAttribute("msg", "手机号未注册，请先注册！");
@@ -51,4 +50,5 @@ public class UserController {
         }
         return "redirect:/entry/login";
     }
+
 }

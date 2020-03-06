@@ -2,24 +2,24 @@ package com.easymemo.pojo;
 
 public class Memo {
     private int memoId;
-    private String userAccount;
     private String memoContent;
     private String memoAccount;
     private String memoPassword;
     private String memoNote;
     private String memoDate;
+    private String userAccount;
 
     public Memo() {
     }
 
-    public Memo(int memoId, String userAccount, String memoContent, String memoAccount, String memoPassword, String memoNote, String memoDate) {
+    public Memo(int memoId, String memoContent, String memoAccount, String memoPassword, String memoNote, String memoDate, String userAccount) {
         this.memoId = memoId;
-        this.userAccount = userAccount;
         this.memoContent = memoContent;
         this.memoAccount = memoAccount;
         this.memoPassword = memoPassword;
         this.memoNote = memoNote;
         this.memoDate = memoDate;
+        this.userAccount = userAccount;
     }
 
     public int getMemoId() {
@@ -28,14 +28,6 @@ public class Memo {
 
     public void setMemoId(int memoId) {
         this.memoId = memoId;
-    }
-
-    public String getUserAccount() {
-        return userAccount;
-    }
-
-    public void setUserAccount(String userAccount) {
-        this.userAccount = userAccount;
     }
 
     public String getMemoContent() {
@@ -71,7 +63,6 @@ public class Memo {
     }
 
     public String getMemoDate() {
-        System.out.println("getMemoDate===>"+memoDate);
         return memoDate;
     }
 
@@ -79,16 +70,24 @@ public class Memo {
         this.memoDate = memoDate;
     }
 
+    public String getUserAccount() {
+        return userAccount;
+    }
+
+    public void setUserAccount(String userAccount) {
+        this.userAccount = userAccount;
+    }
+
     @Override
     public String toString() {
         return "Memo{" +
                 "memoId=" + memoId +
-                ", userAccount='" + userAccount + '\'' +
                 ", memoContent='" + memoContent + '\'' +
                 ", memoAccount='" + memoAccount + '\'' +
                 ", memoPassword='" + memoPassword + '\'' +
                 ", memoNote='" + memoNote + '\'' +
-                ", memoDate=" + memoDate +
+                ", memoDate='" + memoDate + '\'' +
+                ", userAccount='" + userAccount + '\'' +
                 '}';
     }
 }
