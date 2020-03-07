@@ -4,6 +4,7 @@ import com.google.code.kaptcha.Constants;
 import com.google.code.kaptcha.Producer;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.imageio.ImageIO;
 import javax.servlet.ServletOutputStream;
@@ -12,7 +13,12 @@ import javax.servlet.http.HttpSession;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
+/**
+ * 采用第三方工具kaptcha来生成图形验证码
+ * 参考链接：https://www.jianshu.com/p/a3525990cd82
+ */
 @Controller
+@RequestMapping("/kaptcha")
 public class KaptchaController {
 
     private final Producer captchaProducer;

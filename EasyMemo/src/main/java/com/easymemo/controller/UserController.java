@@ -1,6 +1,5 @@
 package com.easymemo.controller;
 
-import com.easymemo.pojo.Memo;
 import com.easymemo.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,6 +8,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpSession;
 
+/**
+ * 负责user的登录、注册、退出登录
+ */
 @Controller
 @RequestMapping("/user")
 public class UserController {
@@ -24,9 +26,6 @@ public class UserController {
 
         if (userService.checkUser(phoneNumber) != null) {  //手机号已注册
             String kaptcha_session_key = session.getAttribute("KAPTCHA_SESSION_KEY").toString();
-
-            System.out.println("login====>checkCode:"+kaptcha_session_key);
-
             if (!checkCode.equals(kaptcha_session_key)) {  //验证码错误
                 session.setAttribute("msg", "验证码不匹配，请重新输入！");
                 return "redirect:/entry/login";
@@ -46,9 +45,6 @@ public class UserController {
             session.setAttribute("msg", "手机号已注册，可直接登录！");
         } else {  //手机号未注册
             String kaptcha_session_key = session.getAttribute("KAPTCHA_SESSION_KEY").toString();
-
-            System.out.println("register====>checkCode:"+kaptcha_session_key);
-
             if (!checkCode.equals(kaptcha_session_key)) {  //验证码错误
                 session.setAttribute("msg", "验证码不匹配，请重新输入！");
                 return "redirect:/entry/register";

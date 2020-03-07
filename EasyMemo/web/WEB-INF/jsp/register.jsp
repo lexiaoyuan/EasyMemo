@@ -13,7 +13,7 @@
         <div>
             <label for="checkCode">验证码：</label>
             <input type="text" id="checkCode" name="checkCode" required placeholder="请输入验证码" maxlength="4px">
-            <img src="${pageContext.request.contextPath}/verify" title="看不清？换一张" />
+            <img src="${pageContext.request.contextPath}/kaptcha/verify" title="看不清？换一张" />
         </div>
         <input type="submit" value="注册">
     </form>

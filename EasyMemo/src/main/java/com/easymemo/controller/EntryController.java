@@ -4,6 +4,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+/**
+ * 访问所有的jsp页面（除index.jsp）都要走entry（入口）请求
+ */
 @Controller
 @RequestMapping("/entry")
 public class EntryController {

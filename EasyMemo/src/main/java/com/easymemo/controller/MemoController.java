@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
+/**
+ * 负责memo的增删改查操作
+ */
 @Controller
 @RequestMapping("/memo")
 public class MemoController {
