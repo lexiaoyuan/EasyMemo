@@ -13,7 +13,7 @@ import javax.servlet.http.HttpSession;
 @RequestMapping("/user")
 public class UserController {
 
-    private UserService userService;
+    private final UserService userService;
 
     public UserController(UserService userService) {
         this.userService = userService;
@@ -23,7 +23,11 @@ public class UserController {
     public String login(String phoneNumber, String checkCode, HttpSession session){
 
         if (userService.checkUser(phoneNumber) != null) {  //手机号已注册
-            if (!checkCode.equals("123456")) {  //验证码错误
+            String kaptcha_session_key = session.getAttribute("KAPTCHA_SESSION_KEY").toString();
+
+            System.out.println("login====>checkCode:"+kaptcha_session_key);
+
+            if (!checkCode.equals(kaptcha_session_key)) {  //验证码错误
                 session.setAttribute("msg", "验证码不匹配，请重新输入！");
                 return "redirect:/entry/login";
             } else {  //验证码正确，可以直接登录
@@ -41,7 +45,11 @@ public class UserController {
         if (userService.checkUser(phoneNumber) != null) {  //手机号已注册
             session.setAttribute("msg", "手机号已注册，可直接登录！");
         } else {  //手机号未注册
-            if (!checkCode.equals("654321")) {  //验证码错误
+            String kaptcha_session_key = session.getAttribute("KAPTCHA_SESSION_KEY").toString();
+
+            System.out.println("register====>checkCode:"+kaptcha_session_key);
+
+            if (!checkCode.equals(kaptcha_session_key)) {  //验证码错误
                 session.setAttribute("msg", "验证码不匹配，请重新输入！");
                 return "redirect:/entry/register";
             } else {  //验证码正确，可以注册

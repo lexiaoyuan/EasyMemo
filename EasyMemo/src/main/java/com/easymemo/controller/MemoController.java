@@ -14,7 +14,7 @@ import java.util.List;
 @RequestMapping("/memo")
 public class MemoController {
 
-    private MemoService memoService;
+    private final MemoService memoService;
 
     public MemoController(MemoService memoService) {
         this.memoService = memoService;
