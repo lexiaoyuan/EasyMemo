@@ -21,9 +21,9 @@ public class EntryController {
         return "register";  //register.jsp
     }
 
-    @GetMapping("/memo")
-    public String toMemo() {
-        return "memo"; //memo.jsp
+    @GetMapping("/addMemo")
+    public String toAddMemo() {
+        return "add-memo"; //add-memo.jsp
     }
 
     @GetMapping("/lookMemo")

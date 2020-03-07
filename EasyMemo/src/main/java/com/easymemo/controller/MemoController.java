@@ -38,7 +38,7 @@ public class MemoController {
         memo.setUserAccount(userAccount);
         memoService.addMemo(memo);
         session.setAttribute("msg", "保存成功！");
-        return "redirect:/entry/memo";
+        return "redirect:/entry/addMemo";
     }
 
 }

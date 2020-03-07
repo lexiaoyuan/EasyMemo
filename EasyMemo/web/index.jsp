@@ -4,7 +4,7 @@
     <title>易备系统</title>
   </head>
   <body>
-    <a href="${pageContext.request.contextPath}/entry/memo">
+    <a href="${pageContext.request.contextPath}/entry/addMemo">
       <button>进入易备系统</button>
     </a>
   </body>

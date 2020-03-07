@@ -1,4 +1,4 @@
-package com.easymemo.config;
+package com.easymemo.interceptor;
 
 import org.springframework.web.servlet.HandlerInterceptor;
 

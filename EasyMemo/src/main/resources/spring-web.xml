@@ -14,7 +14,7 @@
     <mvc:interceptors>
         <mvc:interceptor>
             <mvc:mapping path="/entry/**"/>
-            <bean class="com.easymemo.config.EntryInterceptor"/>
+            <bean class="com.easymemo.interceptor.EntryInterceptor"/>
         </mvc:interceptor>
     </mvc:interceptors>
 

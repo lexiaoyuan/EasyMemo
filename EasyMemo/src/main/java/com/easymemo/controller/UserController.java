@@ -31,7 +31,7 @@ public class UserController {
                 return "redirect:/entry/login";
             } else {  //验证码正确，可以直接登录
                 session.setAttribute("userAccount", phoneNumber);
-                return "redirect:/entry/memo";
+                return "redirect:/entry/addMemo";
             }
         } else {  //手机号未注册
             session.setAttribute("msg", "手机号未注册，请先注册！");

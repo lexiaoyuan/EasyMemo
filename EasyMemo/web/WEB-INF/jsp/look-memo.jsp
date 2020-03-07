@@ -10,7 +10,7 @@
 <div>
     <div>
         <ul>
-            <li><a href="${pageContext.request.contextPath}/entry/memo">新 建</a></li>
+            <li><a href="${pageContext.request.contextPath}/entry/addMemo">新 建</a></li>
             <li><a href="${pageContext.request.contextPath}/memo/lookMemo">查 看</a></li>
             <li><a href="#">修 改</a></li>
             <li><a href="#">删 除</a></li>
