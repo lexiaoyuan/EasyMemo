@@ -58,7 +58,9 @@ public class UserController {
 
     @GetMapping("/logout")
     public String logout(HttpSession session) {
-        session.removeAttribute("userAccount");
+        if (session.getAttribute("userAccount") != null ) {
+            session.removeAttribute("userAccount");
+        }
         return "redirect:/entry/login";
     }
 

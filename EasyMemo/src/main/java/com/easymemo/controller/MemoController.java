@@ -25,20 +25,29 @@ public class MemoController {
 
     @GetMapping("/lookMemo")
     public String lookMemo(HttpSession session) {
-        String userAccount = session.getAttribute("userAccount").toString();
-        List<Memo> memoList = memoService.lookMemo(userAccount);
-        session.setAttribute("memoList", memoList);
-        session.setAttribute("msg", "查询成功！");
-        return "redirect:/entry/lookMemo";
+
+        if (session.getAttribute("userAccount") == null) {
+            return "redirect:/entry/login";
+        } else {
+            String userAccount = session.getAttribute("userAccount").toString();
+            List<Memo> memoList = memoService.lookMemo(userAccount);
+            session.setAttribute("memoList", memoList);
+            session.setAttribute("msg", "查询成功！");
+            return "redirect:/entry/lookMemo";
+        }
     }
 
     @PostMapping("/addMemo")
     public String addMemo(Memo memo, HttpSession session){
-        String userAccount = session.getAttribute("userAccount").toString();
-        memo.setUserAccount(userAccount);
-        memoService.addMemo(memo);
-        session.setAttribute("msg", "保存成功！");
-        return "redirect:/entry/addMemo";
-    }
 
+        if (session.getAttribute("userAccount") == null) {
+            return "redirect:/entry/login";
+        } else {
+            String userAccount = session.getAttribute("userAccount").toString();
+            memo.setUserAccount(userAccount);
+            memoService.addMemo(memo);
+            session.setAttribute("msg", "保存成功！");
+            return "redirect:/entry/addMemo";
+        }
+    }
 }

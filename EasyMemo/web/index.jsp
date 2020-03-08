@@ -2,10 +2,14 @@
 <html>
   <head>
     <title>易备系统</title>
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+    <script>
+      $(function () {
+        $("#app").load("${pageContext.request.contextPath}/entry/addMemo");
+      });
+    </script>
   </head>
   <body>
-    <a href="${pageContext.request.contextPath}/entry/addMemo">
-      <button>进入易备系统</button>
-    </a>
+  <div id="app"></div>
   </body>
 </html>
