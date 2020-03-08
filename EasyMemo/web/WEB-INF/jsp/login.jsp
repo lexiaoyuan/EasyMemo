@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/statics/css/login.css">
-    <script src="${pageContext.request.contextPath}/statics/js/login.js"></script>
+
     <title>易备系统登录</title>
 
 </head>
@@ -17,7 +17,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col text-center py-4 mt-2">
-            <img class="img-fluid" src="${pageContext.request.contextPath}/statics/img/github.png" alt="GitHub">
+            <img class="img-fluid" src="${pageContext.request.contextPath}/statics/img/memo.png" alt="易备">
         </div>
     </div>
     <div class="row">
@@ -36,7 +36,7 @@
                     </div>
                     <div class="form-group">
                         <label for="kaptcha" class="text-dark font-weight-bold d-block">验证码</label>
-                        <img src="${pageContext.request.contextPath}/kaptcha/verify" id="verify" class="rounded-sm float-right" title="看不清？换一张"/>
+                        <img src="http://localhost:8080/EasyMemo/kaptcha/verify" id="verify" class="rounded-sm float-right" title="看不清？换一张"/>
                         <input type="text" class="form-control form-control-sm w-50" id="kaptcha" name="checkCode"
                                required placeholder="请输入验证码" maxlength="4px">
                     </div>
@@ -56,22 +56,7 @@
         </div>
     </div>
 </div>
-
-<%--<form >
-    <div>
-        <label for="phoneNumber">手机号：</label>
-        <input type="text" id="phoneNumber" name="phoneNumber" required placeholder="请输入手机号" maxlength="11px">
-    </div>
-    <div>
-        <label for="checkCode">验证码：</label>
-        <input type="text" id="checkCode" name="checkCode" required placeholder="请输入验证码" maxlength="6px">
-        <img src="${pageContext.request.contextPath}/kaptcha/verify" title="看不清？换一张" />
-    </div>
-    <input type="submit" value="登录">
-</form>
-<span>${msg}</span>
-<p>新用户？<a href="${pageContext.request.contextPath}/entry/register">注册</a></p>--%>
-
+<%--<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>--%>
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
         crossorigin="anonymous"></script>
@@ -81,5 +66,14 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
+
+<script>
+    $(function () {
+        //刷新验证码
+        $("#verify").click(function () {
+            $(this).attr("src", "http://localhost:8080/EasyMemo/kaptcha/verify");
+        });
+    });
+</script>
 </body>
 </html>
