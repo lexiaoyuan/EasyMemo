@@ -2,7 +2,6 @@
 <!doctype html>
 <html lang="en">
 <head>
-
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -19,7 +18,6 @@
     </style>
 
     <title>新建备忘录</title>
-
 </head>
 <body class="bg-light">
 <div class="container-fluid">
@@ -70,7 +68,7 @@
                 </div>
                 <div class="form-group">
                     <label for="date">时间：</label>
-                    <input type="date" id="date" class="form-control" name="memoDate" required>
+                    <input type="text" id="date" class="form-control" name="memoDate" required>
                 </div>
                 <button type="submit" class="btn btn-primary btn-block mb-2">保&nbsp;存</button>
             </form>
@@ -87,15 +85,22 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
-<script src="http://cdn.staticfile.org/moment.js/2.24.0/moment.min.js"></script>
+<script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
+<script src="https://unpkg.com/dayjs@1.8.21/locale/zh-cn.js"></script>
+<script src="${pageContext.request.contextPath}/statics/laydate/laydate.js"></script>
 
 <script>
     $(function () {
+        dayjs.locale('zh-cn')
         setInterval(function () {
-            $("#nowTime").html(moment().format("YYYY-MM-DD HH:mm:ss"));
+            $("#nowTime").html(dayjs().format('YYYY-MM-DD HH:mm:ss dddd'));
         }, 0);
     });
 
+    laydate.render({
+        elem: '#date'
+        , value: dayjs().format('YYYY-MM-DD')
+    });
 </script>
 </body>
 </html>
