@@ -5,7 +5,7 @@
     <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
     <script>
       $(function () {
-        $("#app").load("${pageContext.request.contextPath}/entry/addMemo");
+        $("#app").load("${pageContext.request.contextPath}/memo/lookMemo");
       });
     </script>
   </head>

@@ -1,4 +1,3 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!doctype html>
 <html lang="en">
@@ -18,10 +17,9 @@
         }
     </style>
 
-    <title>查看备忘录</title>
+    <title>修改备忘录</title>
 </head>
 <body class="bg-light">
-
 <div class="container-fluid">
     <div class="row row-custom mt-3 justify-content-center align-items-center">
         <div class="col text-right">
@@ -44,42 +42,37 @@
             </div>
             <div class="list-group mt-3">
                 <a href="${pageContext.request.contextPath}/entry/addMemo" class="list-group-item list-group-item-action">新建</a>
-                <a href="${pageContext.request.contextPath}/memo/lookMemo" class="list-group-item list-group-item-action active">查看</a>
+                <a href="${pageContext.request.contextPath}/memo/lookMemo" class="list-group-item list-group-item-action">查看</a>
+                <a href="${pageContext.request.contextPath}/entry/updateMemo" class="list-group-item list-group-item-action active">修改</a>
                 <a href="${pageContext.request.contextPath}/user/logout" class="list-group-item list-group-item-action">退出登录</a>
                 <a href="#" class="list-group-item list-group-item-action">注销账号</a>
             </div>
         </div>
         <div class="col-9">
-            <ul class="list-unstyled">
-                <c:forEach var="memo" items="${memoList}">
-                    <li class="media mb-4 bg-white p-3 shadow rounded">
-                        <img class="mr-3" src="${pageContext.request.contextPath}/statics/img/memo.png" title="易备" alt="头像">
-                        <div class="media-body">
-                            <div class="row justify-content-between">
-                                <div class="col-8">
-                                    <h5 class="mt-0 mb-1">${memo.memoContent }</h5>
-                                </div>
-                                <div class="col-4">
-                                    <small class="float-right">
-                                        <a href="${pageContext.request.contextPath}/memo/updateMemo/${memo.memoId}">修改</a>
-                                        <a href="${pageContext.request.contextPath}/memo/deleteMemo/${memo.memoId}" class="ml-2">删除</a>
-                                    </small>
-                                </div>
-                            </div>
-                            <p>
-                                <small>欢迎你：${userAccount}</small>
-                                <small class="float-right">创建时间：${memo.memoDate }</small>
-                            </p>
-
-                            <ul class="list-group">
-                                <li class="list-group-item list-group-item-action list-group-item-primary">账号：${memo.memoAccount }</li>
-                                <li class="list-group-item list-group-item-action list-group-item-success">密码：${memo.memoPassword }</li>
-                                <li class="list-group-item list-group-item-action list-group-item-info">备注：${memo.memoNote }</li>
-                            </ul>
-                        </div>
-                    </li>
-                </c:forEach>
-            </ul>
+            <h4>修改备忘录</h4>
+            <form action="${pageContext.request.contextPath}/memo/updateMemo" method="post">
+                <div class="form-group mt-3">
+                    <label for="content">内容</label>
+                    <input type="text" id="content" class="form-control" name="memoContent" value="${memo.memoContent}" required placeholder="记录一下是哪个地方要用到的" maxlength="100px">
+                </div>
+                <div class="form-group">
+                    <label for="account">账号</label>
+                    <input type="text" id="account" class="form-control" name="memoAccount" value="${memo.memoAccount}" required placeholder="记录一下账号" maxlength="50px">
+                </div>
+                <div class="form-group">
+                    <label for="password">密码：</label>
+                    <input type="text" id="password" class="form-control" name="memoPassword" value="${memo.memoPassword}" required placeholder="记录一下密码" maxlength="50px">
+                </div>
+                <div class="form-group">
+                    <label for="note">备注：</label>
+                    <input type="text" id="note" class="form-control" name="memoNote" value="${memo.memoNote}" placeholder="备注~" maxlength="300px">
+                </div>
+                <div class="form-group">
+                    <label for="date">时间：</label>
+                    <input type="text" id="date" class="form-control" name="memoDate" value="${memo.memoDate}" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block mb-2">修&nbsp;改</button>
+            </form>
         </div>
     </div>
 </div>
@@ -95,6 +88,7 @@
         crossorigin="anonymous"></script>
 <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
 <script src="https://unpkg.com/dayjs@1.8.21/locale/zh-cn.js"></script>
+<script src="https://www.layuicdn.com/layDate/laydate.js"></script>
 
 <script>
     $(function () {
@@ -102,6 +96,11 @@
         setInterval(function () {
             $("#nowTime").html(dayjs().format('YYYY-MM-DD HH:mm:ss dddd'));
         }, 0);
+    });
+
+    laydate.render({
+        elem: '#date'
+        , value: dayjs().format('YYYY-MM-DD')
     });
 </script>
 </body>

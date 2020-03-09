@@ -31,4 +31,9 @@ public class EntryController {
         return "look-memo";  //look-memo.jsp
     }
 
+    @GetMapping("/updateMemo")
+    public String toUpdateMemo() {
+        return "update-memo";  //update-memo.jsp
+    }
+
 }

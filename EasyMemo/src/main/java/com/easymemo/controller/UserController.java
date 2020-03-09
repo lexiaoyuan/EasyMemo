@@ -30,6 +30,8 @@ public class UserController {
                 return "redirect:/entry/login";
             } else {  //验证码正确，可以直接登录
                 session.setAttribute("msg", "已注册，直接登录！");
+                session.setAttribute("userAccount", phoneNumber);
+                return "redirect:/memo/lookMemo";
             }
         } else {  //手机号未注册
             if (!checkCode.equals(kaptcha_session_key)) {  //验证码错误
@@ -38,10 +40,10 @@ public class UserController {
             } else {  //验证码正确，可以直接登录
                 userService.addUser(phoneNumber);
                 session.setAttribute("msg", "已自动注册，并直接登录！");
+                session.setAttribute("userAccount", phoneNumber);
+                return "redirect:/entry/addMemo";
             }
         }
-        session.setAttribute("userAccount", phoneNumber);
-        return "redirect:/entry/addMemo";
     }
 
     @PostMapping("/register")
@@ -54,6 +56,8 @@ public class UserController {
                 return "redirect:/entry/register";
             } else {  //验证码正确，可以注册
                 session.setAttribute("msg", "手机号已注册，已直接登录！");
+                session.setAttribute("userAccount", phoneNumber);
+                return "redirect:/memo/lookMemo";
             }
         } else {  //手机号未注册
             if (!checkCode.equals(kaptcha_session_key)) {  //验证码错误
@@ -62,10 +66,10 @@ public class UserController {
             } else {  //验证码正确，可以注册
                 userService.addUser(phoneNumber);
                 session.setAttribute("msg", "注册完成，已直接登录！");
+                session.setAttribute("userAccount", phoneNumber);
+                return "redirect:/entry/addMemo";
             }
         }
-        session.setAttribute("userAccount", phoneNumber);
-        return "redirect:/entry/addMemo";
     }
 
     @GetMapping("/logout")

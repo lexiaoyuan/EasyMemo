@@ -87,7 +87,7 @@
         crossorigin="anonymous"></script>
 <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
 <script src="https://unpkg.com/dayjs@1.8.21/locale/zh-cn.js"></script>
-<script src="${pageContext.request.contextPath}/statics/laydate/laydate.js"></script>
+<script src="https://www.layuicdn.com/layDate/laydate.js"></script>
 
 <script>
     $(function () {

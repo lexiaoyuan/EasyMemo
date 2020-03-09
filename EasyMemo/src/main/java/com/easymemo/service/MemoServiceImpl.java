@@ -23,4 +23,16 @@ public class MemoServiceImpl implements MemoService {
     public List<Memo> lookMemo(String userAccount) {
         return memoMapper.lookMemo(userAccount);
     }
+
+    public int updateMemo(Memo memo) {
+        return memoMapper.updateMemo(memo);
+    }
+
+    public Memo queryMemoById(int memoId) {
+        return memoMapper.queryMemoById(memoId);
+    }
+
+    public int deleteMemoById(int memoId) {
+        return memoMapper.deleteMemoById(memoId);
+    }
 }

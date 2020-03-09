@@ -11,4 +11,22 @@
     <select id="lookMemo" parameterType="string" resultType="memo">
         select * from memo where user_account=#{userAccount} order by memo_id desc;
     </select>
+
+    <update id="updateMemo" parameterType="memo" useGeneratedKeys="true">
+        update memo
+        set memo_content = #{memoContent},
+            memo_account = #{memoAccount},
+            memo_password = #{memoPassword},
+            memo_note = #{memoNote},
+            memo_date = #{memoDate}
+        where user_account = #{userAccount} and memo_id = #{memoId};
+    </update>
+
+    <select id="queryMemoById" parameterType="_int" resultType="memo">
+        select * from memo where memo_id = #{memoId};
+    </select>
+
+    <delete id="deleteMemoById" parameterType="_int">
+        delete from memo where memo_id = #{memoId};
+    </delete>
 </mapper>
