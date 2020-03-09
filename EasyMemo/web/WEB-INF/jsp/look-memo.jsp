@@ -46,7 +46,7 @@
                 <a href="${pageContext.request.contextPath}/entry/addMemo" class="list-group-item list-group-item-action">新建</a>
                 <a href="${pageContext.request.contextPath}/memo/lookMemo" class="list-group-item list-group-item-action active">查看</a>
                 <a href="${pageContext.request.contextPath}/user/logout" class="list-group-item list-group-item-action">退出登录</a>
-                <a href="#" class="list-group-item list-group-item-action">注销账号</a>
+                <a href="${pageContext.request.contextPath}/user/logoff" class="list-group-item list-group-item-action">注销账号</a>
             </div>
         </div>
         <div class="col-9">
@@ -95,6 +95,7 @@
         crossorigin="anonymous"></script>
 <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
 <script src="https://unpkg.com/dayjs@1.8.21/locale/zh-cn.js"></script>
+<script src="https://www.layuicdn.com/layer-v3.1.1/layer.js"></script>
 
 <script>
     $(function () {
@@ -102,6 +103,23 @@
         setInterval(function () {
             $("#nowTime").html(dayjs().format('YYYY-MM-DD HH:mm:ss dddd'));
         }, 0);
+
+        let msg = "${msg}";
+        console.log(msg);
+        if (msg === "已注册，直接登录！" || msg === "手机号已注册，已直接登录！" || msg === "保存成功！" || msg === "修改成功！" || msg === "删除成功！") {
+            layer.msg(msg, {
+                icon: 1,
+                time: 1000,
+                offset: 't'
+            });
+        }
+        if (msg === "出现错误，请重试!" || msg === "删除失败！") {
+            layer.msg(msg, {
+                icon: 2,
+                time: 1000,
+                offset: 't'
+            });
+        }
     });
 </script>
 </body>

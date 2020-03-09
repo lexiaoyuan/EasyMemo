@@ -65,6 +65,7 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
+<script src="https://www.layuicdn.com/layer-v3.1.1/layer.js"></script>
 
 <script>
     $(function () {
@@ -72,6 +73,15 @@
         $("#verify").click(function () {
             $(this).attr("src", "http://localhost:8080/EasyMemo/kaptcha/verify");
         });
+
+        let msg = "${msg}";
+        if (msg === "登录验证码不匹配！" || msg === "账号未登录，请先登录!") {
+            layer.msg(msg, {
+                icon: 2,
+                time: 2000,
+                offset: 't'
+            });
+        }
     });
 </script>
 </body>

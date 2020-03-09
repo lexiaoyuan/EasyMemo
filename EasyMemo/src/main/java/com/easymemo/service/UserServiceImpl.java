@@ -21,4 +21,8 @@ public class UserServiceImpl implements UserService {
     public User checkUser(String userAccount) {
         return userMapper.checkUser(userAccount);
     }
+
+    public int deleteUser(String userAccount) {
+        return userMapper.deleteUser(userAccount);
+    }
 }

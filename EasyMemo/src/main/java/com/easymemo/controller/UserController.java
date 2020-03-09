@@ -23,10 +23,11 @@ public class UserController {
 
     @PostMapping("/login")
     public String login(String phoneNumber, String checkCode, HttpSession session){
+
         String kaptcha_session_key = session.getAttribute("KAPTCHA_SESSION_KEY").toString();
         if (userService.checkUser(phoneNumber) != null) {  //手机号已注册
             if (!checkCode.equals(kaptcha_session_key)) {  //验证码错误
-                session.setAttribute("msg", "验证码不匹配，请重新输入！");
+                session.setAttribute("msg", "登录验证码不匹配！");
                 return "redirect:/entry/login";
             } else {  //验证码正确，可以直接登录
                 session.setAttribute("msg", "已注册，直接登录！");
@@ -35,7 +36,7 @@ public class UserController {
             }
         } else {  //手机号未注册
             if (!checkCode.equals(kaptcha_session_key)) {  //验证码错误
-                session.setAttribute("msg", "验证码不匹配，请重新输入！");
+                session.setAttribute("msg", "登录验证码不匹配！");
                 return "redirect:/entry/login";
             } else {  //验证码正确，可以直接登录
                 userService.addUser(phoneNumber);
@@ -48,11 +49,12 @@ public class UserController {
 
     @PostMapping("/register")
     public String register(String phoneNumber, String checkCode, HttpSession session){
+
         String kaptcha_session_key = session.getAttribute("KAPTCHA_SESSION_KEY").toString();
 
         if (userService.checkUser(phoneNumber) != null) {  //手机号已注册
             if (!checkCode.equals(kaptcha_session_key)) {  //验证码错误
-                session.setAttribute("msg", "验证码不匹配，请重新输入！");
+                session.setAttribute("msg", "注册验证码不匹配！");
                 return "redirect:/entry/register";
             } else {  //验证码正确，可以注册
                 session.setAttribute("msg", "手机号已注册，已直接登录！");
@@ -61,7 +63,7 @@ public class UserController {
             }
         } else {  //手机号未注册
             if (!checkCode.equals(kaptcha_session_key)) {  //验证码错误
-                session.setAttribute("msg", "验证码不匹配，请重新输入！");
+                session.setAttribute("msg", "注册验证码不匹配！");
                 return "redirect:/entry/register";
             } else {  //验证码正确，可以注册
                 userService.addUser(phoneNumber);
@@ -74,8 +76,21 @@ public class UserController {
 
     @GetMapping("/logout")
     public String logout(HttpSession session) {
+
         if (session.getAttribute("userAccount") != null ) {
             session.removeAttribute("userAccount");
+        }
+        return "redirect:/entry/login";
+    }
+
+    @GetMapping("/logoff")
+    public String logoff(HttpSession session) {
+
+        if (session.getAttribute("userAccount") != null ) {
+            String userAccount = session.getAttribute("userAccount").toString();
+            if (userService.checkUser(userAccount) != null) {
+                userService.deleteUser(userAccount);
+            }
         }
         return "redirect:/entry/login";
     }

@@ -11,4 +11,8 @@
         select user_account from user where user_account = #{userAccount};
     </select>
 
+    <delete id="deleteUser" parameterType="string">
+        delete from user where user_account = #{userAccount};
+    </delete>
+
 </mapper>

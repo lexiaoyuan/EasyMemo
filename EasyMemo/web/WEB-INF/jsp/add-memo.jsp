@@ -44,7 +44,7 @@
                 <a href="${pageContext.request.contextPath}/entry/addMemo" class="list-group-item list-group-item-action active">新建</a>
                 <a href="${pageContext.request.contextPath}/memo/lookMemo" class="list-group-item list-group-item-action">查看</a>
                 <a href="${pageContext.request.contextPath}/user/logout" class="list-group-item list-group-item-action">退出登录</a>
-                <a href="#" class="list-group-item list-group-item-action">注销账号</a>
+                <a href="${pageContext.request.contextPath}/user/logoff" class="list-group-item list-group-item-action">注销账号</a>
             </div>
         </div>
         <div class="col-9">
@@ -88,6 +88,7 @@
 <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
 <script src="https://unpkg.com/dayjs@1.8.21/locale/zh-cn.js"></script>
 <script src="https://www.layuicdn.com/layDate/laydate.js"></script>
+<script src="https://www.layuicdn.com/layer-v3.1.1/layer.js"></script>
 
 <script>
     $(function () {
@@ -101,6 +102,23 @@
         elem: '#date'
         , value: dayjs().format('YYYY-MM-DD')
     });
+
+    let msg = "${msg}";
+    console.log(msg);
+    if (msg === "注册完成，已直接登录！" || msg === "已自动注册，并直接登录！" ) {
+        layer.msg(msg, {
+            icon: 1,
+            time: 1000,
+            offset: 't'
+        });
+    }
+    if (msg === "结果为空，无法查看！") {
+        layer.msg(msg, {
+            icon: 2,
+            time: 1000,
+            offset: 't'
+        });
+    }
 </script>
 </body>
 </html>

@@ -28,13 +28,18 @@ public class MemoController {
     public String lookMemo(HttpSession session) {
 
         if (session.getAttribute("userAccount") == null) {
+            session.setAttribute("msg", "账号未登录，请先登录!");
             return "redirect:/entry/login";
         } else {
             String userAccount = session.getAttribute("userAccount").toString();
             List<Memo> memoList = memoService.lookMemo(userAccount);
-            session.setAttribute("memoList", memoList);
-            session.setAttribute("msg", "查询成功！");
-            return "redirect:/entry/lookMemo";
+            if (memoList.size() != 0 ) {
+                session.setAttribute("memoList", memoList);
+                return "redirect:/entry/lookMemo";
+            } else {
+                session.setAttribute("msg", "结果为空，无法查看！");
+                return "redirect:/entry/addMemo";
+            }
         }
     }
 
@@ -42,6 +47,7 @@ public class MemoController {
     public String addMemo(Memo memo, HttpSession session){
 
         if (session.getAttribute("userAccount") == null) {
+            session.setAttribute("msg", "账号未登录，请先登录!");
             return "redirect:/entry/login";
         } else {
             String userAccount = session.getAttribute("userAccount").toString();
@@ -55,7 +61,7 @@ public class MemoController {
 
     @GetMapping("/updateMemo/{memoId}")
     public String toUpdateMemo(@PathVariable int memoId, HttpSession session) {
-        System.out.println("toUpdateMemo===>memoId:"+memoId);
+
         session.setAttribute("memoId", memoId);
         Memo memo = memoService.queryMemoById(memoId);
         session.setAttribute("memo", memo);
@@ -65,7 +71,9 @@ public class MemoController {
 
     @PostMapping("/updateMemo")
     public String updateMemo(Memo memo, HttpSession session) {
+
         if (session.getAttribute("userAccount") == null) {
+            session.setAttribute("msg", "账号未登录，请先登录!");
             return "redirect:/entry/login";
         } else {
             if (session.getAttribute("memoId") == null) {
@@ -86,6 +94,7 @@ public class MemoController {
     public String deleteMemo(@PathVariable int memoId, HttpSession session) {
 
         if (session.getAttribute("userAccount") == null) {
+            session.setAttribute("msg", "账号未登录，请先登录!");
             return "redirect:/entry/login";
         } else {
             if (memoService.queryMemoById(memoId) != null) {
