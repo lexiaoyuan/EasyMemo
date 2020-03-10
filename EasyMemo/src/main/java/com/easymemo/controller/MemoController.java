@@ -35,6 +35,7 @@ public class MemoController {
             List<Memo> memoList = memoService.lookMemo(userAccount);
             if (memoList.size() != 0 ) {
                 session.setAttribute("memoList", memoList);
+                System.out.println(session.getAttribute("msg"));
                 redirectAttributes.addFlashAttribute("msg", session.getAttribute("msg"));
                 session.removeAttribute("msg");
                 return "redirect:/entry/lookMemo";
