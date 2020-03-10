@@ -2,10 +2,10 @@ package com.easymemo.controller;
 
 import com.easymemo.service.UserService;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 /**
@@ -22,12 +22,12 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public String login(String phoneNumber, String checkCode, HttpSession session){
+    public String login(String phoneNumber, String checkCode, HttpSession session, RedirectAttributes redirectAttributes){
 
         String kaptcha_session_key = session.getAttribute("KAPTCHA_SESSION_KEY").toString();
         if (userService.checkUser(phoneNumber) != null) {  //手机号已注册
             if (!checkCode.equals(kaptcha_session_key)) {  //验证码错误
-                session.setAttribute("msg", "登录验证码不匹配！");
+                redirectAttributes.addFlashAttribute("msg", "验证码不匹配！");
                 return "redirect:/entry/login";
             } else {  //验证码正确，可以直接登录
                 session.setAttribute("msg", "已注册，直接登录！");
@@ -36,11 +36,11 @@ public class UserController {
             }
         } else {  //手机号未注册
             if (!checkCode.equals(kaptcha_session_key)) {  //验证码错误
-                session.setAttribute("msg", "登录验证码不匹配！");
+                redirectAttributes.addFlashAttribute("msg", "验证码不匹配！");
                 return "redirect:/entry/login";
             } else {  //验证码正确，可以直接登录
                 userService.addUser(phoneNumber);
-                session.setAttribute("msg", "已自动注册，并直接登录！");
+                redirectAttributes.addFlashAttribute("msg", "已自动注册，并直接登录！");
                 session.setAttribute("userAccount", phoneNumber);
                 return "redirect:/entry/addMemo";
             }
@@ -48,13 +48,13 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public String register(String phoneNumber, String checkCode, HttpSession session){
+    public String register(String phoneNumber, String checkCode, HttpSession session, RedirectAttributes redirectAttributes){
 
         String kaptcha_session_key = session.getAttribute("KAPTCHA_SESSION_KEY").toString();
 
         if (userService.checkUser(phoneNumber) != null) {  //手机号已注册
             if (!checkCode.equals(kaptcha_session_key)) {  //验证码错误
-                session.setAttribute("msg", "注册验证码不匹配！");
+                redirectAttributes.addFlashAttribute("msg", "验证码不匹配！");
                 return "redirect:/entry/register";
             } else {  //验证码正确，可以注册
                 session.setAttribute("msg", "手机号已注册，已直接登录！");
@@ -63,11 +63,11 @@ public class UserController {
             }
         } else {  //手机号未注册
             if (!checkCode.equals(kaptcha_session_key)) {  //验证码错误
-                session.setAttribute("msg", "注册验证码不匹配！");
+                redirectAttributes.addFlashAttribute("msg", "验证码不匹配！");
                 return "redirect:/entry/register";
             } else {  //验证码正确，可以注册
                 userService.addUser(phoneNumber);
-                session.setAttribute("msg", "注册完成，已直接登录！");
+                redirectAttributes.addFlashAttribute("msg", "注册完成，已直接登录！");
                 session.setAttribute("userAccount", phoneNumber);
                 return "redirect:/entry/addMemo";
             }

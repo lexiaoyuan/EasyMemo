@@ -76,7 +76,7 @@
 
         let msg = "${msg}";
         console.log(msg);
-        if (msg === "注册验证码不匹配！") {
+        if (msg === "验证码不匹配！") {
             layer.msg(msg, {
                 icon: 2,
                 time: 2000,

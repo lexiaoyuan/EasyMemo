@@ -18,7 +18,6 @@ public class EntryInterceptor implements HandlerInterceptor {
 
         HttpSession session = request.getSession();
         String requestURI = request.getRequestURI();
-
         /*放行*/
         //1. 请求登录、注册
         if (requestURI.contains("login") || requestURI.contains("register")) {
